@@ -239,4 +239,19 @@ var taskStatusChangeHandler = function(event) {
 var saveTasks = function() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
+var loadTasks = function() {
+    tasks = localStorage.getItem("tasks");
+
+    if (!saveTasks) {
+        return false;
+    }
+
+    saveTasks = JSON.parse(saveTasks);
+    // loop through savedTasks array
+    for (var i = 0; i < savedTasks.length; i++) {
+        // pass each task object into the `createTaskEl()` function
+        createTaskEl(savedTasks[i]);
+    }
+}
+
 pageContentEl.addEventListener("change", taskStatusChangeHandler);
